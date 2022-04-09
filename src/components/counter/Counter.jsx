@@ -9,15 +9,17 @@ class Counter extends Component {
       counter: 0,
     };
     // this.increment = this.increment.bind(this);
-    this.reset = this.reset.bind(this);
+    // this.reset = this.reset.bind(this);
+    // this.increment = this.increment.bind(this);
+    // this.decrement = this.decrement.bind(this);
   }
   render() {
     return (
       <div className="counter">
         {/* <button onClick={this.increment}>+{this.props.add}</button> */}
-        <CounterButton by={1}/>
-        <CounterButton by={5}/>
-        <CounterButton by={10}/>
+        <CounterButton by={1} incrementMethod={this.increment} decrementMethod={this.decrement}/>
+        <CounterButton by={5} incrementMethod={this.increment} decrementMethod={this.decrement}/> 
+        <CounterButton by={10} incrementMethod={this.increment} decrementMethod={this.decrement}/>
         <span className="count">{this.state.counter}</span>
         <div>
             <button className="reset" onClick={this.reset}>Reset</button>
@@ -26,16 +28,15 @@ class Counter extends Component {
     );
   }
 
-  increment() {
-    console.log("Increment");
-    this.setState({ counter: this.state.counter + this.props.add });
+  increment = (by) => {
+    this.setState({counter: this.state.counter + by});
   }
 
-  decrement(){
-
+  decrement = (by) => {
+    this.setState({counter: this.state.counter - by});
   }
 
-  reset(){
+  reset = () => {
       this.setState({counter: 0});
   }
 }
